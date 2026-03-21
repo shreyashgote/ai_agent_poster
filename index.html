@@ -1,260 +1,352 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Agent Platform - Project Poster</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
 
-        :root {
-            --primary-blue: #1a365d;
-            --secondary-red: #c53030;
-            --accent-gray: #f7fafc;
+      :root {
+        --primary-blue: #1a365d;
+        --secondary-red: #c53030;
+        --accent-gray: #f7fafc;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", sans-serif;
+        background-color: #cbd5e0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      main {
+        min-height: 0;
+      }
+      .poster-canvas {
+        width: 1189px;
+        height: 841px;
+        background: white;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        padding: 20px 35px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+      }
+
+      .header-logo {
+        height: 85px;
+        width: 85px;
+        object-fit: contain;
+      }
+
+      .section-title {
+        background-color: var(--primary-blue);
+        color: white;
+        padding: 5px 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        display: inline-block;
+        font-size: 13px;
+      }
+
+      .column {
+        flex: 1;
+        padding: 0 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      .column-3 {
+        gap: 6px; /* reduce spacing between sections */
+      }
+
+      .column-3 .content-box {
+        padding: 7px;
+        font-size: 11.5px;
+        line-height: 1.3;
+      }
+
+      .column-3 .section-title {
+        font-size: 12px;
+        padding: 4px 10px;
+        margin-bottom: 6px;
+      }
+
+      .column-3 ul {
+        margin-left: 14px;
+      }
+
+      .column-3 li {
+        margin-bottom: 2px;
+      }
+
+      .column section {
+        flex-shrink: 0;
+      }
+
+      .content-box {
+        background-color: var(--accent-gray);
+        border-left: 4px solid var(--secondary-red);
+        padding: 10px;
+        border-radius: 0 4px 4px 0;
+        font-size: 13px;
+        line-height: 1.4;
+      }
+
+      .tech-tag {
+        background: #e2e8f0;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-size: 10.5px;
+        font-weight: 600;
+      }
+
+      @media print {
+        @page {
+          size: A1 landscape;
+          margin: 0;
         }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #cbd5e0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
+          background: white;
         }
-
-        /* A1 Landscape Aspect Ratio (1189mm x 841mm scale) */
         .poster-canvas {
-            width: 1189px;
-            height: 841px;
-            background: white;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            padding: 20px 35px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
+          box-shadow: none;
+          border: none;
         }
-
-        .header-logo {
-            height: 85px;
-            width: 85px;
-            object-fit: contain;
-        }
-
-        .section-title {
-            background-color: var(--primary-blue);
-            color: white;
-            padding: 5px 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-            border-radius: 4px;
-            display: inline-block;
-            font-size: 13px;
-        }
-
-        .column {
-            flex: 1;
-            padding: 0 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .content-box {
-            background-color: var(--accent-gray);
-            border-left: 3.5px solid var(--secondary-red);
-            padding: 10px;
-            border-radius: 0 4px 4px 0;
-            font-size: 13px;
-            line-height: 1.35;
-        }
-
-        .tech-tag {
-            background: #e2e8f0;
-            padding: 1px 7px;
-            border-radius: 10px;
-            font-size: 10.5px;
-            font-weight: 600;
-            margin-right: 3px;
-            margin-bottom: 3px;
-        }
-
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-
-            .poster-canvas {
-                box-shadow: none;
-                border: none;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
+    <div class="poster-canvas">
+      <!-- HEADER -->
+      <header class="flex justify-between items-start mb-4 border-b pb-3">
+        <img
+          src="KGCECollegeLogo.jpg"
+          class="header-logo"
+          style="width: 120px; height: 120px; margin-left: 70px"
+        />
 
-    <div class="poster-canvas" id="poster">
-        <!-- HEADER -->
-        <header class="flex justify-between items-start mb-4 border-b pb-3">
-            <!-- College Logo (Left) -->
-            <img src="KGCECollegeLogo.jpg" alt="KGCE Logo" class="header-logo"
-                style="width: 120px; height: 120px; margin-left: 70px;">
+        <div class="text-center flex-1 px-4">
+          <h2 class="text-[19px] font-bold text-red-600 uppercase">
+            KONKAN GYANPEETH COLLEGE OF ENGINEERING, KARJAT
+          </h2>
 
-            <div class="text-center flex-1 px-4 leading-tight">
-                <h2 class="text-[19px] font-bold text-red-600 uppercase tracking-tight">KONKAN GYANPEETH COLLGE OF
-                    ENGINEERING, KARJAT</h2>
-                <p class="text-[15px] font-bold text-blue-700 underline mb-1">Department of Computer Science &
-                    Engineering</p>
+          <p class="text-[15px] font-bold text-blue-700 underline">
+            Department of Computer Science & Engineering
+          </p>
 
-                <h1 class="text-[25px] font-extrabold text-red-600 uppercase mt-0.5 mb-0.5">AI AGENT PLATFORM</h1>
+          <h1 class="text-[26px] font-extrabold text-red-600 uppercase">
+            AI AGENT PLATFORM
+          </h1>
 
-                <p class="text-[15px] font-bold text-purple-700">Yash Chinchole (07), Shreyash Gote (11), Sameer Salve
-                    (33), Darshan Yenkar (43)</p>
+          <p class="text-[15px] font-bold text-purple-700">
+            Yash Chincholi (07), Shreyash Gote (11), Sameer Salve (33), Darshan
+            Yenkar (43)
+          </p>
 
-                <div class="mt-0.5 text-[13px] flex justify-center gap-6">
-                    <p class="text-black font-semibold"><b>Guide :</b> Prof. S. M. Patil</p>
-                    <p class="text-red-600 font-bold">Academic Year : 2025-26</p>
-                </div>
+          <div class="text-[13px] flex justify-center gap-6 mt-1">
+            <p><b>Guide :</b> Prof. S. M. Patil</p>
+            <p class="text-red-600 font-bold">Academic Year : 2025-26</p>
+          </div>
+        </div>
+
+        <img
+          src="UniversityOfMumbaiLogo.jpg"
+          class="header-logo"
+          style="width: 120px; height: 120px; margin-right: 70px"
+        />
+      </header>
+
+      <!-- MAIN -->
+      <main class="flex-1 flex gap-2 overflow-hidden">
+        <!-- COLUMN 1 -->
+        <div class="column">
+          <section>
+            <h3 class="section-title">01. Introduction</h3>
+            <div class="content-box">
+              AI Agent Platform is an intelligent video conferencing system that
+              integrates real-time AI agents to assist users during meetings. It
+              enables automatic transcription, contextual summarization, and
+              interactive querying of meeting data. The platform transforms
+              traditional meetings into structured, searchable, and
+              knowledge-driven collaborative environments, improving
+              productivity and decision-making.
             </div>
+          </section>
 
-            <!-- MU Logo (Right) -->
-            <img src="UniversityOfMumbaiLogo.jpg" alt="MU Logo" class="header-logo"
-                style="width: 120px;height: 120px; margin-right: 70px;">
-        </header>
-
-        <!-- MAIN BODY - 3 COLUMNS -->
-        <main class="flex-1 flex gap-2 overflow-hidden">
-
-            <!-- COLUMN 1: Introduction & Foundation -->
-            <div class="column">
-                <section>
-                    <h3 class="section-title">01. Introduction</h3>
-                    <div class="content-box">
-                        An advanced AI-powered video meeting platform designed to integrate intelligent AI agents into
-                        real-time digital environments. It automates processes from recording to insight generation,
-                        enabling smarter collaboration and decision-making.
-                    </div>
-                </section>
-
-                <section>
-                    <h3 class="section-title">02. Problem Statement</h3>
-                    <div class="content-box">
-                        <ul class="list-disc ml-4 space-y-0.5">
-                            <li>Traditional platforms lack intelligent real-time assistance.</li>
-                            <li>Manual note-taking leads to information loss and reduced engagement.</li>
-                            <li>Difficulty in retrieving specific data from long recordings.</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section>
-                    <h3 class="section-title">03. Scope & Objectives</h3>
-                    <div class="content-box">
-                        <ul class="list-disc ml-4 space-y-0.5">
-                            <li>Develop a real-time meeting platform with AI integration.</li>
-                            <li>Enable custom AI agents for specialized roles.</li>
-                            <li>Provide automated transcription and AI summaries.</li>
-                            <li>Implement AI-driven querying of meeting content.</li>
-                        </ul>
-                    </div>
-                </section>
+          <section>
+            <h3 class="section-title">02. Problem Statement</h3>
+            <div class="content-box">
+              <ul class="list-disc ml-4">
+                <li>
+                  No intelligent real-time assistance in existing platforms
+                </li>
+                <li>Manual note-taking leads to data loss</li>
+                <li>Unstructured recordings are hard to analyze</li>
+                <li>Lack of actionable insights from meetings</li>
+                <li>No contextual search over past meetings</li>
+              </ul>
             </div>
+          </section>
 
-            <!-- COLUMN 2: Core Design & Methodology -->
-            <div class="column">
-                <section>
-                    <h3 class="section-title">04. System Design</h3>
-                    <div class="content-box bg-white border-2 border-dashed border-gray-300 flex flex-col items-center">
-                        <div class="text-[9px] text-gray-400 mb-1 italic">[ARCHITECTURE OVERVIEW]</div>
-                        <div class="flex flex-col gap-1.5 w-full text-center font-bold text-[11px]">
-                            <div class="p-1.5 bg-blue-100 rounded border border-blue-200">FRONTEND (Next.js / React)
-                            </div>
-                            <div class="p-1.5 bg-gray-100 rounded border border-gray-200">API LAYER (tRPC / Serverless)
-                            </div>
-                            <div class="p-1.5 bg-red-100 rounded border border-red-200">AI SERVICES (Gemini API / Stream
-                                SDK)</div>
-                            <div class="p-1.5 bg-green-100 rounded border border-green-200">DATABASE (Neon PostgreSQL /
-                                Firebase)</div>
-                        </div>
-                    </div>
-                </section>
-
-                <section>
-                    <h3 class="section-title">05. Methodology</h3>
-                    <div class="content-box">
-                        <p class="font-bold mb-1 text-blue-900 text-[12px]">Processing Flow:</p>
-                        <ol class="list-decimal ml-4 space-y-0.5 text-[12px]">
-                            <li><strong>Session Start:</strong> Initiate video via Stream SDK.</li>
-                            <li><strong>Live Capture:</strong> Real-time audio via Gemini API.</li>
-                            <li><strong>Processing:</strong> Inngest handles summarization.</li>
-                            <li><strong>Insights:</strong> RAG for AI Chat queries.</li>
-                        </ol>
-                    </div>
-                </section>
+          <section>
+            <h3 class="section-title">03. Scope & Objectives</h3>
+            <div class="content-box">
+              <ul class="list-disc ml-4">
+                <li>Develop AI-powered real-time meeting system</li>
+                <li>Enable customizable AI agents</li>
+                <li>Automate transcription and summarization</li>
+                <li>Provide contextual search using RAG</li>
+                <li>Improve collaboration and decision-making</li>
+                <li>Build scalable SaaS-based architecture</li>
+              </ul>
             </div>
+          </section>
+        </div>
 
-            <!-- COLUMN 3: Implementation & Outcomes -->
-            <div class="column">
-                <section>
-                    <h3 class="section-title">06. Implementation</h3>
-                    <div class="content-box">
-                        <div class="flex flex-wrap gap-1">
-                            <span class="tech-tag">Next.js 14</span>
-                            <span class="tech-tag">TypeScript</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Tailwind CSS</span>
-                            <span class="tech-tag">Google Gemini</span>
-                            <span class="tech-tag">Stream SDK</span>
-                        </div>
-                    </div>
-                </section>
-
-                <section>
-                    <h3 class="section-title">07. Applications</h3>
-                    <div class="content-box">
-                        <ul class="list-disc ml-4 space-y-0.5">
-                            <li><strong>Corporate:</strong> Automated MOM.</li>
-                            <li><strong>Education:</strong> Smart lecture recording.</li>
-                            <li><strong>HR:</strong> Interview analysis & feedback.</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section>
-                    <h3 class="section-title">08. Conclusion</h3>
-                    <div class="content-box font-medium italic">
-                        Successfully bridges the gap between communication and documentation, improving productivity by
-                        80%.
-                    </div>
-                </section>
-
-                <section>
-                    <h3 class="section-title text-[9px] py-1">09. References</h3>
-                    <div class="text-[9px] italic text-gray-500 leading-tight">
-                        [1] Barriuso et al. (2016) [2] Uber AI (2020) [3] Zato et al. (2012).
-                    </div>
-                </section>
+        <!-- COLUMN 2 -->
+        <div class="column">
+          <section>
+            <h3 class="section-title">04. System Design</h3>
+            <div
+              class="content-box text-[11px] font-bold space-y-1 text-center"
+            >
+              <div class="bg-blue-100 p-1 rounded">
+                User Interface (Next.js / React)
+              </div>
+              <div>↓</div>
+              <div class="bg-gray-100 p-1 rounded">tRPC API Layer</div>
+              <div>↓</div>
+              <div class="bg-yellow-100 p-1 rounded">
+                Authentication (BetterAuth)
+              </div>
+              <div>↓</div>
+              <div class="bg-red-100 p-1 rounded">
+                Video & Chat (Stream SDK)
+              </div>
+              <div>↓</div>
+              <div class="bg-purple-100 p-1 rounded">
+                AI Processing (OpenAI / Gemini)
+              </div>
+              <div>↓</div>
+              <div class="bg-green-100 p-1 rounded">
+                Background Jobs (Inngest)
+              </div>
+              <div>↓</div>
+              <div class="bg-green-200 p-1 rounded">
+                Database (Neon PostgreSQL)
+              </div>
             </div>
-        </main>
+          </section>
 
-        <!-- FOOTER -->
-        <footer class="mt-3 pt-2 border-t border-gray-100 flex justify-between items-center">
-            <div class="text-[9px] text-gray-400">
-                Final Year B.E. Project Competition 2025-26
+          <section>
+            <h3 class="section-title">05. Methodology</h3>
+            <div class="content-box">
+              <ol class="list-decimal ml-4 text-[12px]">
+                <li>User creates meeting via system interface</li>
+                <li>Backend initializes meeting using Stream SDK</li>
+                <li>Audio/video data captured in real-time</li>
+                <li>Speech converted to text (transcription)</li>
+                <li>AI processes transcript for summarization</li>
+                <li>Embeddings generated for RAG-based retrieval</li>
+                <li>Data stored and indexed in database</li>
+                <li>User queries meeting using AI chat</li>
+                <li>System returns contextual insights instantly</li>
+              </ol>
             </div>
-            <div class="bg-blue-900 text-white px-3 py-1 text-[9px] font-bold rounded">
-                CSE DEPARTMENT - KGCE
+          </section>
+        </div>
+
+        <!-- COLUMN 3 -->
+        <div class="column column-3">
+          <section>
+            <h3 class="section-title">06. Implementation</h3>
+            <div class="content-box">
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Tailwind</span>
+                <span class="tech-tag">tRPC</span>
+                <span class="tech-tag">OpenAI API</span>
+                <span class="tech-tag">Stream SDK</span>
+                <span class="tech-tag">PostgreSQL</span>
+              </div>
+
+              <p class="text-[12px]">
+                System integrates real-time AI agents, transcript processing,
+                RAG-based querying, and SaaS-based deployment for scalability.
+              </p>
             </div>
-        </footer>
+          </section>
+
+          <section>
+            <h3 class="section-title">07. Applications</h3>
+            <div class="content-box">
+              <ul class="list-disc ml-4">
+                <li>Corporate Meetings (Auto Minutes)</li>
+                <li>Education (Smart Lectures)</li>
+                <li>HR Interviews Analysis</li>
+                <li>Client Interaction Insights</li>
+              </ul>
+            </div>
+          </section>
+
+          <section>
+            <h3 class="section-title">08. Results & Observations</h3>
+            <div class="content-box">
+              <ul class="list-disc ml-4 text-[12px]">
+                <li>Accurate real-time transcription</li>
+                <li>Efficient AI-generated summaries</li>
+                <li>Fast contextual query responses</li>
+                <li>Improved productivity and decision-making</li>
+              </ul>
+            </div>
+          </section>
+
+          <section>
+            <h3 class="section-title">09. Conclusion</h3>
+            <div class="content-box italic">
+              The system enhances collaboration by integrating AI-driven
+              automation, enabling efficient communication, knowledge
+              extraction, and intelligent decision-making.
+            </div>
+          </section>
+
+          <section>
+            <h3 class="section-title">10. References</h3>
+            <div class="content-box text-[12px]">
+              <ul class="list-disc ml-4">
+                <li>OpenAI API Documentation</li>
+                <li>Stream Video SDK Docs</li>
+                <li>tRPC Official Documentation</li>
+                <li>Research Papers on RAG Systems</li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="mt-3 pt-2 border-t flex justify-between text-[9px]">
+        <div>Final Year B.E. Project Competition 2025-26</div>
+        <div class="bg-blue-900 text-white px-3 py-1 rounded font-bold">
+          CSE DEPARTMENT - KGCE
+        </div>
+      </footer>
     </div>
-
-</body>
-
+  </body>
 </html>
